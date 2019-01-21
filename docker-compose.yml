@@ -1,0 +1,17 @@
+version: "3"
+services:
+  mysql:
+    build:
+      context: ./mysql
+    ports:
+      - 33306:3306
+    volumes:
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./mysql/docs:/docs
+    working_dir: /docs
+    environment:
+      MYSQL_ROOT_PASSWORD: r00tpa55w0rd
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: dump
+    container_name: dump-mysql
